@@ -18,7 +18,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
 from sklearn.naive_bayes import MultinomialNB
-
+from pomegranate import *
 
 if __name__ == "__main__":
     # NOTE: we put the following in a 'if __name__ == "__main__"' protected
@@ -90,4 +90,6 @@ if __name__ == "__main__":
 
 # HH
 d1 = DiscreteDIstribution()
+d2 = DiscreteDistribution()
+
 
