@@ -17,6 +17,7 @@ from sklearn.datasets import load_files
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
+from sklearn.naive_bayes import MultinomialNB
 
 if __name__ == "__main__":
     # NOTE: we put the following in a 'if __name__ == "__main__"' protected
@@ -26,9 +27,18 @@ if __name__ == "__main__":
     # that is used when n_jobs != 1 in GridSearchCV
 
     # the training data folder must be passed as first argument
-    movie_reviews_data_folder = sys.argv[1]
+    movie_reviews_data_folder = './txt_sentoken'
     dataset = load_files(movie_reviews_data_folder, shuffle=False)
     print("n_samples: %d" % len(dataset.data))
+
+    # stop list
+    fStopList = open(r'./Part2StopList')
+    line = fStopList.readline()
+    stoplist = []
+    while line:
+        stoplist.append(line)
+        line = fStopList.readline()
+    fStopList.close()
 
     # split the dataset in training and test set:
     docs_train, docs_test, y_train, y_test = train_test_split(
@@ -37,8 +47,8 @@ if __name__ == "__main__":
     # TASK: Build a vectorizer / classifier pipeline that filters out tokens
     # that are too rare or too frequent
     pipeline = Pipeline([
-        ('vect', TfidfVectorizer(min_df=3, max_df=0.95)),
-        ('clf', LinearSVC(C=1000)),
+        ('vect', TfidfVectorizer(min_df=3, max_df=0.95, stop_words = stoplist)),
+        ('clf', MultinomialNB()),
     ])
 
     # TASK: Build a grid search to find out whether unigrams or bigrams are
