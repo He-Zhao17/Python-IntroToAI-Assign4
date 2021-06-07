@@ -19,6 +19,7 @@ from sklearn import metrics
 
 from sklearn.naive_bayes import MultinomialNB
 
+
 if __name__ == "__main__":
     # NOTE: we put the following in a 'if __name__ == "__main__"' protected
     # block to be able to use a multi-core grid search that also works under
@@ -84,3 +85,9 @@ if __name__ == "__main__":
     # import matplotlib.pyplot as plt
     # plt.matshow(cm)
     # plt.show()
+
+
+
+# HH
+d1 = DiscreteDIstribution()
+
